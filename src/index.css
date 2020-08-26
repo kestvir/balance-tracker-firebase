@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #e6e6e6;
+    height: 100vh;
+    position: relative;
+}
+
+.tracker-container, .signin-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.container {
+    max-width: 540px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    position: relative;
+}
+
+li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.income {
+    background-color: #43AA8B;
+}
+
+.expense {
+    background-color: #F94144;
+}
+
+.total-income {
+    color: #43AA8B;
+}
+
+.total-expense {
+    color: #F94144;
+}
+
+.transaction-item {
+    font-size: 20px;
+    color: #fff;
+    justify-content: space-between;
+}
+
+.transaction-item-opions {
+    position: absolute;
+    top: 50%;
+    right: -80px;
+    transform: translate(-100%, -50%);
+}
+
+.transaction-delete-button, .transaction-update-button {
+    color: #000;
+    font-weight: 700;
+    font-size: 18px;
+    align-self: center;
+}
+
+.transaction-delete-button:hover, .transaction-update-button:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.income-and-expense {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.border-mid>div:first-of-type {
+    border-right: 1px solid #dedede;
+}
+
+.user-container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profile-picture {
+    margin: 0 10px;
+}
+
+.sign-out {
+    cursor: pointer;
+}
+
+.signin-welcome {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .border-mid>div:first-of-type {
+        border-bottom: 1px solid #dedede;
+        border-right: none;
+        margin-bottom: 0.5rem;
+    }
+    .transaction-item {
+        font-size: 20px;
+        color: #fff;
+        justify-content: flex-start;
+    }
+    .transaction-amount {
+        margin-left: 10px;
+    }
+    .transaction-item-opions {
+        position: absolute;
+        top: 50%;
+        right: -20px;
+        transform: translate(-100%, -50%);
+    }
+}
