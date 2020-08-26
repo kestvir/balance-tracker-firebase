@@ -4,7 +4,6 @@ import TransactionItem from "./TransactionItem";
 
 const TransactionList = () => {
   const { transactions } = useContext(TransactionContext);
-  console.log(transactions);
   const sortedTransactionsArr = transactions.sort(
     (transaction1, transaction2) =>
       transaction1.createdAt > transaction2.createdAt ? -1 : 1

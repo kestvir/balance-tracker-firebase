@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "../firebase";
 
 const User = () => {
+  console.log(firebase.auth().currentUser);
   return (
     <div className="user-container">
       <h5>Hello, {firebase.auth().currentUser.displayName}</h5>
