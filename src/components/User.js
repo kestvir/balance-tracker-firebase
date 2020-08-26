@@ -2,10 +2,14 @@ import React from "react";
 import firebase from "../firebase";
 
 const User = () => {
-  console.log(firebase.auth().currentUser);
+  const displayUsername = firebase.auth().currentUser.displayName;
   return (
     <div className="user-container">
-      <h5>Hello, {firebase.auth().currentUser.displayName}</h5>
+      <h5>
+        {displayUsername
+          ? `Hello, ${displayUsername}`
+          : firebase.auth().currentUser.email}
+      </h5>
       <img
         className="profile-picture"
         alt="profile avatar"
