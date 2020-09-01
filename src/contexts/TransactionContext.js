@@ -2,6 +2,12 @@ import React, { createContext, useReducer, useEffect, useContext } from "react";
 import firebase from "../firebase";
 import { transactionReducer } from "../reducers/transactionReducer";
 import { AlertContext } from "./AlertContext";
+import {
+  getTransactions,
+  calcBalance,
+  setError,
+  setLoading,
+} from "../actions/actions";
 
 export const TransactionContext = createContext();
 
@@ -26,7 +32,7 @@ const TransactionContextProvider = (props) => {
 
   useEffect(() => {
     const fetchTransactions = () => {
-      dispatch({ type: "SET_LOADING", loading: true });
+      dispatch(setLoading(true));
 
       const db = firebase.firestore();
       const unsubscribe = db
@@ -34,7 +40,7 @@ const TransactionContextProvider = (props) => {
         .where("userID", "==", state.userID)
         .onSnapshot(
           (querySnapshot) => {
-            dispatch({ type: "SET_LOADING", loading: false });
+            dispatch(setLoading(false));
             const transactions = [];
             querySnapshot.forEach((doc) => {
               transactions.push({
@@ -42,15 +48,12 @@ const TransactionContextProvider = (props) => {
                 id: doc.id,
               });
             });
-            dispatch({ type: "GET_TRANSACTIONS", transactions });
-            dispatch({ type: "CALC_BALANCE" });
+            dispatch(getTransactions(transactions));
+            dispatch(calcBalance());
           },
           (err) => {
             console.error(err);
-            alertDispatch({
-              type: "SET_ERROR",
-              errorMessage: "Something went wrong...",
-            });
+            alertDispatch(setError());
           }
         );
 

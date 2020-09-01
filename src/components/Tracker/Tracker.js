@@ -3,7 +3,7 @@ import TransactionInfo from "./TransactionInfo";
 import TransactionForm from "./TransactionForm";
 import Balance from "./Balance";
 import IncomeAndExpense from "./IncomAndExpense";
-import User from "../User";
+import User from "../Auth/User";
 import { Redirect } from "react-router-dom";
 import { TransactionContext } from "../../contexts/TransactionContext";
 

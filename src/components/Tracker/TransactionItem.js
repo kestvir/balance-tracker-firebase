@@ -2,6 +2,12 @@ import React, { useContext } from "react";
 import firebase from "../../firebase";
 import { TransactionContext } from "../../contexts/TransactionContext";
 import { AlertContext } from "../../contexts/AlertContext";
+import {
+  setSuccess,
+  setError,
+  setEditing,
+  setEditTransactionItem,
+} from "../../actions/actions";
 
 const TransactionItem = ({ transaction }) => {
   const { dispatch } = useContext(TransactionContext);
@@ -14,27 +20,18 @@ const TransactionItem = ({ transaction }) => {
       .doc(transaction.id)
       .delete()
       .then(() => {
-        alertDispatch({
-          type: "SET_SUCCESS",
-          successMessage: "Transaction deleted",
-        });
+        alertDispatch(setSuccess("Transaction deleted!"));
       })
       .catch(function (err) {
         console.error("Error removing document: ", err);
-        alertDispatch({
-          type: "SET_ERROR",
-          errorMessage: "Something went wrong...",
-        });
+        alertDispatch(setError());
       });
   };
 
   const prepareUpdate = () => {
-    dispatch({ type: "SET_EDITING", editing: true });
+    dispatch(setEditing(true));
 
-    dispatch({
-      type: "SET_EDIT_TRANSACTION_ITEM",
-      transaction,
-    });
+    dispatch(setEditTransactionItem(transaction));
   };
 
   const transactionType =

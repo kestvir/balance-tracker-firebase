@@ -3,10 +3,10 @@ import TransactionContextProvider from "./contexts/TransactionContext";
 import AlertContextProvider from "./contexts/AlertContext";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import Alert from "./components/layout/Alert";
+import Alert from "./components/Alert";
 import Tracker from "./components/Tracker/Tracker";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SignIn from "./components/SignIn";
+import SignIn from "./components/Auth/SignIn";
 
 const alertOptions = {
   timeout: 3000,

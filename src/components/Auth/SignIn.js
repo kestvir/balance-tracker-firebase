@@ -1,8 +1,9 @@
 import React, { useEffect, useContext } from "react";
-import firebase from "../firebase";
+import firebase from "../../firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Redirect } from "react-router-dom";
-import { TransactionContext } from "../contexts/TransactionContext";
+import { TransactionContext } from "../../contexts/TransactionContext";
+import { setUserID } from "../../actions/actions";
 
 const SignIn = () => {
   const { userID, dispatch } = useContext(TransactionContext);
@@ -23,8 +24,8 @@ const SignIn = () => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userObj) => {
       if (userObj) {
-        dispatch({ type: "SET_USER_ID", userID: userObj.uid });
-      } else dispatch({ type: "SET_USER_ID", userID: null });
+        dispatch(setUserID(userObj.uid));
+      } else dispatch(setUserID(null));
     });
   }, [dispatch]);
 

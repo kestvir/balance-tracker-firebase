@@ -2,6 +2,14 @@ import React, { useContext } from "react";
 import firebase from "../../firebase";
 import { TransactionContext } from "../../contexts/TransactionContext";
 import { AlertContext } from "../../contexts/AlertContext";
+import {
+  setSuccess,
+  setError,
+  setEditing,
+  resetActiveTransaction,
+  changeAmount,
+  changeTitle,
+} from "../../actions/actions";
 
 const TransactionForm = () => {
   const { userID, activeTransaction, editing, dispatch } = useContext(
@@ -22,21 +30,15 @@ const TransactionForm = () => {
     db.collection("transactions")
       .add(fixedFloatTransactionObj)
       .then((docRef) => {
-        alertDispatch({
-          type: "SET_SUCCESS",
-          successMessage: "Transaction added",
-        });
+        alertDispatch(setSuccess("Transaction added!"));
         console.log("Document written with ID: ", docRef.id);
       })
       .catch((err) => {
         console.error("Error adding document: ", err);
-        alertDispatch({
-          type: "SET_ERROR",
-          errorMessage: "Something went wrong...",
-        });
+        alertDispatch(setError());
       })
       .finally(() => {
-        dispatch({ type: "RESET_ACTIVE_TRANSACTION" });
+        dispatch(resetActiveTransaction());
       });
   };
 
@@ -59,21 +61,15 @@ const TransactionForm = () => {
         title: activeTransaction.title,
       })
       .then(() => {
-        dispatch({ type: "SET_EDITING", editing: false });
-        alertDispatch({
-          type: "SET_SUCCESS",
-          successMessage: "Transaction updated",
-        });
+        dispatch(setEditing(false));
+        alertDispatch(setSuccess("Transaction updated!"));
       })
       .catch((err) => {
-        alertDispatch({
-          type: "SET_ERROR",
-          errorMessage: "Transaction amount cannot be 0",
-        });
+        alertDispatch(setError("Transaction amount cannot be 0"));
         console.error("Error updating document: ", err);
       })
       .finally(() => {
-        dispatch({ type: "RESET_ACTIVE_TRANSACTION" });
+        dispatch(resetActiveTransaction());
       });
   };
 
@@ -81,11 +77,11 @@ const TransactionForm = () => {
     let changedAmount = parseFloat(e.target.value);
 
     if (changedAmount) {
-      dispatch({ type: "CHANGE_AMOUNT", amount: changedAmount });
+      dispatch(changeAmount(changedAmount));
     } else if (changedAmount === 0) {
-      dispatch({ type: "CHANGE_AMOUNT", amount: changedAmount });
+      dispatch(changeAmount(changedAmount));
     } else {
-      dispatch({ type: "CHANGE_AMOUNT", amount: "" });
+      dispatch(changeAmount(""));
     }
   };
 
@@ -110,9 +106,7 @@ const TransactionForm = () => {
               name="title"
               required
               placeholder="Add title.."
-              onChange={(e) =>
-                dispatch({ type: "CHANGE_TITLE", title: e.target.value })
-              }
+              onChange={(e) => dispatch(changeTitle(e.target.value))}
             />
           </div>
 
