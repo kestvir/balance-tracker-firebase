@@ -5,14 +5,14 @@ export const transactionReducer = (state, action) => {
     case "GET_TRANSACTIONS":
       return {
         ...state,
-        transactions: action.transactions,
+        transactions: action.payload,
       };
     case "CHANGE_TITLE":
       return {
         ...state,
         activeTransaction: {
           ...state.activeTransaction,
-          title: action.title,
+          title: action.payload,
         },
       };
     case "CHANGE_AMOUNT":
@@ -20,7 +20,7 @@ export const transactionReducer = (state, action) => {
         ...state,
         activeTransaction: {
           ...state.activeTransaction,
-          amount: action.amount,
+          amount: action.payload,
         },
       };
     case "RESET_ACTIVE_TRANSACTION":
@@ -35,13 +35,13 @@ export const transactionReducer = (state, action) => {
     case "SET_EDIT_TRANSACTION_ITEM":
       return {
         ...state,
-        activeTransaction: { ...action.transaction },
+        activeTransaction: { ...action.payload },
       };
 
     case "SET_EDITING":
       return {
         ...state,
-        editing: action.editing,
+        editing: action.payload,
       };
     case "CALC_BALANCE":
       return {
@@ -53,12 +53,12 @@ export const transactionReducer = (state, action) => {
     case "SET_LOADING":
       return {
         ...state,
-        loading: action.loading,
+        loading: action.payload,
       };
     case "SET_USER_ID":
       return {
         ...state,
-        userID: action.userID,
+        userID: action.payload,
       };
     default:
       return state;

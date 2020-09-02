@@ -5,7 +5,7 @@ export const setUserID = (userObjID) => {
 export const getTransactions = (transactionData) => {
   return {
     type: "GET_TRANSACTIONS",
-    transactions: transactionData,
+    payload: transactionData,
   };
 };
 
@@ -16,13 +16,13 @@ export const resetActiveTransaction = () => {
 };
 
 export const setEditing = (isEditing) => {
-  return { type: "SET_EDITING", editing: isEditing };
+  return { type: "SET_EDITING", payload: isEditing };
 };
 
 export const setEditTransactionItem = (transanctionItem) => {
   return {
     type: "SET_EDIT_TRANSACTION_ITEM",
-    transaction: transanctionItem,
+    payload: transanctionItem,
   };
 };
 
@@ -33,24 +33,24 @@ export const calcBalance = () => {
 };
 
 export const changeAmount = (changedAmount) => {
-  return { type: "CHANGE_AMOUNT", amount: changedAmount };
+  return { type: "CHANGE_AMOUNT", payload: changedAmount };
 };
 
 export const changeTitle = (newTitle) => {
-  return { type: "CHANGE_TITLE", title: newTitle };
+  return { type: "CHANGE_TITLE", payload: newTitle };
 };
 
 export const setSuccess = (message) => {
-  return { type: "SET_SUCCESS", successMessage: message };
+  return { type: "SET_SUCCESS", payload: message };
 };
 
 export const setError = (message = "Something went wrong...") => {
   return {
     type: "SET_ERROR",
-    errorMessage: message,
+    payload: message,
   };
 };
 
 export const setLoading = (isLoading) => {
-  return { type: "SET_LOADING", loading: isLoading };
+  return { type: "SET_LOADING", payload: isLoading };
 };
