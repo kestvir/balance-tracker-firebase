@@ -60,7 +60,7 @@ const TransactionForm = () => {
       })
       .then(() => {
         dispatch(setEditing(false));
-        alertDispatch(setSuccess("Transaction updated!"));
+        alertDispatch({ type: "SET_SUCCESS", payload: "Updated!!" });
       })
       .catch((err) => {
         alertDispatch(setError("Transaction amount cannot be 0"));
