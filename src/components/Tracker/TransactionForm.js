@@ -48,7 +48,7 @@ const TransactionForm = () => {
   };
 
   const updateTransaction = () => {
-    if (parseFloat(activeTransaction.amount.toFixed(2) === 0)) {
+    if (parseFloat(activeTransaction.amount) === 0) {
       return alertDispatch(setError("Transaction amount cannot be 0"));
     }
 
