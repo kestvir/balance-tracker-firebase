@@ -28,6 +28,10 @@ const TransactionForm = () => {
   };
 
   const createTransaction = () => {
+    if (parseFloat(activeTransaction.amount) === 0) {
+      return alertDispatch(setError("Transaction amount cannot be 0"));
+    }
+
     const fixedFloatTransactionObj = getActiveTransactionObj();
 
     const db = firebase.firestore();
@@ -48,7 +52,6 @@ const TransactionForm = () => {
   };
 
   const updateTransaction = () => {
-    console.log(activeTransaction.amount);
     if (parseFloat(activeTransaction.amount) === 0) {
       return alertDispatch(setError("Transaction amount cannot be 0"));
     }
