@@ -29,7 +29,7 @@ export const transactionReducer = (state, action) => {
         activeTransaction: {
           id: null,
           title: "",
-          amount: 0,
+          amount: "",
         },
       };
     case "SET_EDIT_TRANSACTION_ITEM":
