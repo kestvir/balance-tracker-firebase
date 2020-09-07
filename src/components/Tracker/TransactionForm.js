@@ -48,6 +48,10 @@ const TransactionForm = () => {
   };
 
   const updateTransaction = () => {
+    if (activeTransaction.amount === 0) {
+      return alertDispatch(setError("Transaction amount cannot be 0"));
+    }
+
     const db = firebase.firestore();
 
     const transactionRef = db
@@ -63,7 +67,7 @@ const TransactionForm = () => {
         alertDispatch(setSuccess("Transaction updated!"));
       })
       .catch((err) => {
-        alertDispatch(setError("Transaction amount cannot be 0"));
+        alertDispatch(setError());
         console.error("Error updating document: ", err);
       })
       .finally(() => {
