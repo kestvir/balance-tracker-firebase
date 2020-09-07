@@ -30,6 +30,7 @@ export const transactionReducer = (state, action) => {
           id: null,
           title: "",
           amount: "",
+          createdAt: null,
         },
       };
     case "SET_EDIT_TRANSACTION_ITEM":
