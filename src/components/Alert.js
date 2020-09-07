@@ -10,11 +10,11 @@ const Alert = () => {
   const { successMessage, errorMessage } = useContext(AlertContext);
 
   useEffect(() => {
-    !isMount && alert.error(errorMessage);
+    !isMount && alert.error(errorMessage.text);
   }, [errorMessage]);
 
   useEffect(() => {
-    !isMount && alert.success(successMessage);
+    !isMount && alert.success(successMessage.text);
   }, [successMessage]);
 
   return <Fragment />;

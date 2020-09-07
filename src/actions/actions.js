@@ -41,13 +41,13 @@ export const changeTitle = (newTitle) => {
 };
 
 export const setSuccess = (message) => {
-  return { type: "SET_SUCCESS", payload: message };
+  return { type: "SET_SUCCESS", payload: { text: message } };
 };
 
 export const setError = (message = "Something went wrong...") => {
   return {
     type: "SET_ERROR",
-    payload: message,
+    payload: { text: message },
   };
 };
 

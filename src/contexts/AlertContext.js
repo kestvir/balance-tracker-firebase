@@ -4,8 +4,8 @@ import { alertReducer } from "../reducers/alertReducer";
 export const AlertContext = createContext();
 
 const initialState = {
-  errorMessage: "",
-  sucessMessage: "",
+  errorMessage: null,
+  sucessMessage: null,
 };
 
 const AlertContextProvider = (props) => {
