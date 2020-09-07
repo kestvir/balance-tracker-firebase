@@ -24,7 +24,6 @@ const SignIn = () => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userObj) => {
       if (userObj) {
-        console.log(userObj);
         dispatch(setUserID(userObj.uid));
       } else dispatch(setUserID(null));
     });

@@ -1,5 +1,5 @@
 export const setUserID = (userObjID) => {
-  return { type: "SET_USER_ID", userID: userObjID };
+  return { type: "SET_USER_ID", payload: userObjID };
 };
 
 export const getTransactions = (transactionData) => {
