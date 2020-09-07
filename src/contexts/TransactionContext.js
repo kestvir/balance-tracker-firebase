@@ -18,6 +18,7 @@ const initialState = {
     id: null,
     title: "",
     amount: "",
+    createdAt: null,
   },
   editing: false,
   balance: 0,

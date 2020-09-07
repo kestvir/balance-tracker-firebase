@@ -48,16 +48,14 @@ const TransactionForm = () => {
   };
 
   const updateTransaction = () => {
-    const fixedFloatTransactionObj = getActiveTransactionObj();
-
     const db = firebase.firestore();
 
     const transactionRef = db
       .collection("transactions")
-      .doc(fixedFloatTransactionObj.id);
+      .doc(activeTransaction.id);
     transactionRef
       .update({
-        amount: fixedFloatTransactionObj.amount,
+        amount: parseFloat(activeTransaction.amount.toFixed(2)),
         title: activeTransaction.title,
       })
       .then(() => {
