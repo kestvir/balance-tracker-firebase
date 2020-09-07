@@ -17,13 +17,18 @@ const TransactionForm = () => {
   );
   const { dispatch: alertDispatch } = useContext(AlertContext);
 
-  const createTransaction = () => {
-    let fixedFloatTransactionObj = {
-      ...activeTransaction,
+  const getActiveTransactionObj = () => {
+    const currDate = Date.now();
+    return {
+      title: activeTransaction.title,
       userID,
-      createdAt: Date.now(),
+      createdAt: currDate,
       amount: parseFloat(activeTransaction.amount.toFixed(2)),
     };
+  };
+
+  const createTransaction = () => {
+    const fixedFloatTransactionObj = getActiveTransactionObj();
 
     const db = firebase.firestore();
 
@@ -43,12 +48,7 @@ const TransactionForm = () => {
   };
 
   const updateTransaction = () => {
-    let fixedFloatTransactionObj = {
-      ...activeTransaction,
-      userID,
-      createdAt: Date.now(),
-      amount: parseFloat(activeTransaction.amount.toFixed(2)),
-    };
+    const fixedFloatTransactionObj = getActiveTransactionObj();
 
     const db = firebase.firestore();
 
